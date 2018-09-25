@@ -16,9 +16,9 @@ namespace program
         private double h, w;
         public Triangel()
         {
-            Console.WriteLine("输入三角形高：");
+            Console.WriteLine("输入三角形的高：");
             this.h = Double.Parse(Console.ReadLine());
-            Console.WriteLine("输入三角形底：");
+            Console.WriteLine("输入三角形的底：");
             this.w = Double.Parse(Console.ReadLine());
         }
         void MyGraph.showArea()
