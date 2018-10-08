@@ -88,7 +88,7 @@ namespace program1
         }
         static void Ring(object sender, ClockEventArgs e)
         {
-            Console.WriteLine("~~~响铃啦~~~");
+            Console.WriteLine("~~~~响铃啦~~~~");
         }
 
     }
