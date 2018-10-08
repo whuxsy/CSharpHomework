@@ -9,62 +9,23 @@ namespace program2
 {
     class Order
     {
+        public string id;
         public List<OrderDetails> OrderList = new List<OrderDetails>();//订单列表
-    }
 
-    class OrderDetails
-    {
-        public Dictionary<int, string> dic = new Dictionary<int, string>();
-
-        public OrderDetails(string name = "", string id = "", string cname = "", string num = "", string price = "")
+        public Order(string id)
         {
-            dic[0] = name;//商品名
-            dic[1] = id;  //商品标号
-            dic[2] = cname;//客户名
-            dic[3] = num;//商品数量
-            dic[4] = price;//商品价格
+            this.id = id;
         }
-        public OrderDetails ShallowCopy()
+        public void AddOrderDetails(OrderDetails od)//增加条目
         {
-            return (OrderDetails)this.MemberwiseClone();
-        }
-    }
-
-    class program
-    {
-        static void Main(string[] args)
-        {
-            Order order = new Order();//创建订单列表
-            program os = new program();
-            //初始化订单
-            OrderDetails od1 = new OrderDetails("C#", "001", "xsy", "10", "69");
-            OrderDetails od2 = new OrderDetails("Java", "002", "ys", "12", "55");
-            OrderDetails od3 = new OrderDetails("C++", "003", "theory", "42", "64");
-            //添加订单
-            os.AddOrder(order, od1);
-            os.AddOrder(order, od2);
-            os.AddOrder(order, od3);
-            //删除订单
-            os.DeleteOrder(order, od2);
-            //查询订单
-            int index = os.FindOrder(order, "C++");//查询订单，返回订单下标
-            //修改订单(想修改的属性，都有对应的键值)
-            os.ChangeOrder(order, index, 0, "C++实验与设计教科书");
-            //打印订单
-            os.PrintOrder(order);
-
+            this.OrderList.Add(od);
         }
 
-        public void AddOrder(Order order, OrderDetails od)
-        {
-            order.OrderList.Add(od);
-        }
-
-        public void DeleteOrder(Order order, OrderDetails od)
+        public void DeleteOrderDetails(OrderDetails od)//删除条目
         {
             try
             {
-                order.OrderList.Remove(od);
+                this.OrderList.Remove(od);
             }
             catch (Exception e)
             {
@@ -72,38 +33,117 @@ namespace program2
             }
         }
 
-        public void ChangeOrder(Order order, int index, int key, string s)
+        public int FindOrderDetails(string s)
         {
-            try
+            for(int i = 0;i<this.OrderList.Count;i++)
             {
-                order.OrderList[index].dic[key] = s;
+                if (this.OrderList[i].dic[0] == s || this.OrderList[i].dic[1] == s)
+                    return i;
             }
-            catch (Exception e)
+            return -1;
+        }
+
+        public void PrintOrderDetails()//打印条目
+        {
+            foreach (OrderDetails od in this.OrderList)
             {
-                Console.WriteLine("下标或键值不合理");
+                Console.WriteLine(od.dic[0] + " " + od.dic[1] + " " + od.dic[2] + " " + od.dic[3]);
             }
         }
 
-        public int FindOrder(Order order, string s)
+    }
+
+    class OrderDetails
+    {
+        public Dictionary<int, string> dic = new Dictionary<int, string>();
+
+        public OrderDetails(string name = "",string cname = "", string num = "", string price = "")
         {
-            for (int i = 0; i < order.OrderList.Count; i++)
+            dic[0] = name;//商品名
+            dic[1] = cname;//客户名
+            dic[2] = num;//商品数量
+            dic[3] = price;//商品价格
+        }
+    }
+
+    class program
+    {
+        static void Main(string[] args)
+        {
+            List<Order> list = new List<Order>();//订单列表
+
+            program os = new program();
+            //初始化条目
+            OrderDetails od1 = new OrderDetails("C#","xsy", "10", "69");
+            OrderDetails od2 = new OrderDetails("Java","ys", "12", "55");
+            OrderDetails od3 = new OrderDetails("C++","theory", "42", "64");
+            //初始化订单
+            Order order1 = new Order("001");
+            Order order2 = new Order("002");
+            order1.AddOrderDetails(od1);
+            order1.AddOrderDetails(od2);
+            order2.AddOrderDetails(od3);
+            //增加订单
+            os.AddOrder(list, order1);
+            os.AddOrder(list, order2);
+            //删除订单
+            os.DeleteOrder(list, order2);
+            //查询订单
+            int index = os.FindOrder(list, "Java");//订单下标
+            int i = list[index].FindOrderDetails("Java");//订单中条目下标
+            //修改订单
+            os.ChangeOrder(list, index, i, 0, "Java实验与设计");
+            //打印订单
+            foreach(Order od in list)
             {
-                if (order.OrderList[i].dic[0] == s || order.OrderList[i].dic[1] == s || order.OrderList[i].dic[2] == s)
-                {
+                od.PrintOrderDetails();
+            }
+        }
+
+        public void AddOrder(List<Order>list,Order order)//增加订单
+        {
+            list.Add(order);
+        }
+
+        public void DeleteOrder(List<Order> list, Order order)//增加订单
+        {
+            try
+            {
+                list.Remove(order);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("订单数为0，无法删除");
+            }
+        }
+
+        public int FindOrder(List<Order> list,string s)//查询订单，返回下标
+        {
+            for(int i = 0;i<list.Count;i++)
+            {
+                if (s == list[i].id)
                     return i;
+                foreach(OrderDetails od in list[i].OrderList)
+                {
+                    if(od.dic[0]==s||od.dic[1]==s)
+                    {
+                        return i;
+                    }
                 }
             }
             return -1;
         }
 
-        public void PrintOrder(Order order)
+        public void ChangeOrder(List<Order>list,int index,int i,int j,string s)//修改index订单第i条目第j属性
         {
-            foreach (OrderDetails od in order.OrderList)
+            try
             {
-                Console.WriteLine(od.dic[0] + " " + od.dic[1] + " " + od.dic[2] + " " + od.dic[3] + " " + od.dic[4]);
+                list[index].OrderList[i].dic[j] = s;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("无法修改");
             }
         }
-
-
     }
 }
