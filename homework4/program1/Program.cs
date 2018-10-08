@@ -33,19 +33,34 @@ namespace program1
         {
             Console.WriteLine("请输入闹钟小时：");
             string h = Console.ReadLine();
-            while (Int32.Parse(h) > 23 || Int32.Parse(h) < 0)
+            try
+            {               
+                while (Int32.Parse(h) > 23 || Int32.Parse(h) < 0)
+                {
+                    Console.WriteLine("输入不合理，请重新输入小时：");
+                    h = Console.ReadLine();
+                }
+            }
+            catch(Exception e)
             {
                 Console.WriteLine("输入不合理，请重新输入小时：");
-                h = Console.ReadLine();
             }
+
             Console.WriteLine("请输入闹钟分钟: ");
             string m = Console.ReadLine();
-            if (m.Length == 1)
-                m = "0" + m;
-            while (Int32.Parse(m) > 59 || Int32.Parse(m) < 0)
+            try
+            {
+                if (m.Length == 1)
+                    m = "0" + m;
+                while (Int32.Parse(m) > 59 || Int32.Parse(m) < 0)
+                {
+                    Console.WriteLine("输入不合理，请重新输入分钟：");
+                    m = Console.ReadLine();
+                }
+            }
+            catch(Exception e)
             {
                 Console.WriteLine("输入不合理，请重新输入分钟：");
-                m = Console.ReadLine();
             }
             string s = h + ":" + m;
 
