@@ -43,6 +43,7 @@ namespace CayleyTree
             k = random.Next(0, 100) / 10;
             GetDate2();
 
+
             if (graphics == null) graphics = this.CreateGraphics();
             else graphics.Clear(BackColor);
             DrawCayleyTree(10, 200, 310, 100, -Math.PI / 2);
