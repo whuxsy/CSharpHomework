@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OrderTest
 {
-    class OrderDetail
+    public class OrderDetail
     {
         #region OrderDetails'id
-        public uint Id { get; set;}
+        public uint Id { get; set; }
         #endregion
 
         #region OrderDetails'Goods
@@ -25,7 +25,8 @@ namespace OrderTest
         #endregion
 
         #region OrderDetails'constructor
-        public OrderDetail(uint id,Goods goods,uint quantity)
+        public OrderDetail() { }
+        public OrderDetail(uint id, Goods goods, uint quantity)
         {
             Id = id;
             Goods = goods;
