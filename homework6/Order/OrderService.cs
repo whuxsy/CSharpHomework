@@ -136,18 +136,15 @@ namespace OrderTest
        /// </summary>
        /// <param name="obj"></param>
        /// <param name="fileName"></param>
-        public void Export(XmlSerializer ser,object obj,string fileName)
+        public void Export(object obj,string fileName)
         {
-            try
-            {        
-                using (FileStream fs = new FileStream(fileName, FileMode.Create))
-                {
-                    ser.Serialize(fs, obj);
-                }
-            }catch(IOException e)
+            XmlSerializer ser = new XmlSerializer(obj.GetType());
+                   
+            using (FileStream fs = new FileStream(fileName, FileMode.Create))
             {
-                Console.WriteLine(e.ToString());
+               ser.Serialize(fs, obj);
             }
+            
         }
 
         /// <summary>
@@ -155,25 +152,15 @@ namespace OrderTest
         /// </summary>
         /// <param name="fileName"></param>
         /// <returns></returns>
-        public object Import(XmlSerializer ser,string fileName)
+        public object Import(string fileName)
         {
-            try
-            {       
-                using (FileStream fs = new FileStream(fileName, FileMode.Open))
-                {
-                    object obj2 = ser.Deserialize(fs);
-                    return obj2;
-                }
-            }catch(FileNotFoundException e)
+            XmlSerializer ser = new XmlSerializer(typeof(Order[]));
+                
+            using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
-                Console.WriteLine($"找不到{fileName}！");
-                return null;
-            }catch(IOException e)
-            {
-                Console.WriteLine(e.ToString());
-                return null;
-            }
-
+                object obj2 = ser.Deserialize(fs);
+                return obj2;
+            }          
         }
     }
 }

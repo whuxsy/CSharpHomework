@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+
 namespace OrderTest.Tests
 {
     [TestClass()]
@@ -189,5 +190,16 @@ namespace OrderTest.Tests
             CollectionAssert.AreEqual(result, list);
         }
 
-    }     
+        /// <summary>
+        /// 测试import的正确输入
+        /// </summary>
+        //[ExpectedException(typeof(IOException))]        
+        [TestMethod()]
+        [ExpectedException(typeof(FileNotFoundException))]
+        public void ImportTest()
+        {
+            OrderService os = new OrderService();
+            os.Import("adsaedf.xml");
+        }
+    } 
 }

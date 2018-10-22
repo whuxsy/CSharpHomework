@@ -48,21 +48,29 @@ namespace OrderTest
                 orders[i++] = od;
             }
 
-            XmlSerializer ser = new XmlSerializer(typeof(Order[]));
-            //XML序列化
-            os.Export(ser,orders,"a.xml");
-
-            //显示xml文本
-            string s = File.ReadAllText("a.xml");
-            Console.WriteLine(s);
-
-            //XML反序列化
-            Order[] orders2 = os.Import(ser,"a.xml") as Order[];
-
-            //打印订单
-            foreach(Order od in orders2)
+            try
             {
-                Console.WriteLine(od);
+                //XML序列化
+                os.Export(orders, "a.xml");
+
+                //显示xml文本
+                string s = File.ReadAllText("a.xml");
+                Console.WriteLine(s);
+
+                //XML反序列化
+                Order[] orders2 = os.Import("aA.xml") as Order[];
+
+                //打印订单
+                if (orders2 != null)
+                {
+                    foreach (Order od in orders2)
+                    {
+                        Console.WriteLine(od);
+                    }
+                }
+            }catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
         }
 
