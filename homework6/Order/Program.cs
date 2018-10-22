@@ -58,7 +58,7 @@ namespace OrderTest
                 Console.WriteLine(s);
 
                 //XML反序列化
-                Order[] orders2 = os.Import("aA.xml") as Order[];
+                Order[] orders2 = os.Import("a.xml") as Order[];
 
                 //打印订单
                 if (orders2 != null)
