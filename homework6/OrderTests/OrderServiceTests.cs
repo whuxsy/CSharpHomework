@@ -191,7 +191,7 @@ namespace OrderTest.Tests
         }
 
         /// <summary>
-        /// 测试import的正确输入
+        /// 正确输入在main函数中，现测试import的错误输入
         /// </summary>
         //[ExpectedException(typeof(IOException))]        
         [TestMethod()]
