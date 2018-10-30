@@ -14,16 +14,16 @@ namespace OrderTest
         static void Main(string[] args)
         {
             #region 初始化订单
-            Customer customer1 = new Customer(1, "Customer1");
-            Customer customer2 = new Customer(2, "Customer2");
+            Customer customer1 = new Customer("Customer1");
+            Customer customer2 = new Customer("Customer2");
 
-            Goods milk = new Goods(1, "Milk", 69.9);
-            Goods eggs = new Goods(2, "eggs", 4.99);
-            Goods apple = new Goods(3, "apple", 5.59);
+            Goods milk = new Goods("Milk", 69.9);
+            Goods eggs = new Goods("eggs", 4.99);
+            Goods apple = new Goods("apple", 5.59);
 
-            OrderDetail orderDetails1 = new OrderDetail(1, apple, 5000);
-            OrderDetail orderDetails2 = new OrderDetail(2, eggs, 1000);
-            OrderDetail orderDetails3 = new OrderDetail(3, milk, 20);
+            OrderDetail orderDetails1 = new OrderDetail(apple, 5000);
+            OrderDetail orderDetails2 = new OrderDetail(eggs, 1000);
+            OrderDetail orderDetails3 = new OrderDetail(milk, 20);
 
             Order order1 = new Order(1, customer1);
             Order order2 = new Order(2, customer2);
@@ -59,7 +59,6 @@ namespace OrderTest
 
                 //XML反序列化
                 Order[] orders2 = os.Import("a.xml") as Order[];
-
                 //打印订单
                 if (orders2 != null)
                 {

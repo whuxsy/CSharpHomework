@@ -8,10 +8,6 @@ namespace OrderTest
 {
     public class OrderDetail
     {
-        #region OrderDetails'id
-        public uint Id { get; set; }
-        #endregion
-
         #region OrderDetails'Goods
         public Goods Goods { get; set; }
         #endregion
@@ -26,9 +22,8 @@ namespace OrderTest
 
         #region OrderDetails'constructor
         public OrderDetail() { }
-        public OrderDetail(uint id, Goods goods, uint quantity)
+        public OrderDetail(Goods goods, uint quantity)
         {
-            Id = id;
             Goods = goods;
             Quantity = quantity;
             Money = Goods.Price * Quantity;
@@ -39,22 +34,21 @@ namespace OrderTest
         public override bool Equals(object obj)
         {
             var od = obj as OrderDetail;
-            return od != null && Goods.Id == od.Goods.Id && Quantity == od.Quantity;
+            return od != null && od.Goods.Name==Goods.Name&&Quantity == od.Quantity;
         }
 
         public override int GetHashCode()
         {
-            var hashcode = 12345;
-            hashcode = hashcode * hashcode + Goods.GetHashCode();
-            hashcode = hashcode * hashcode + Quantity.GetHashCode();
-            return hashcode;
+            var hashCode = 1522631281;
+            hashCode = hashCode * -1521134295 + Goods.Name.GetHashCode();
+            hashCode = hashCode * -1521134295 + Quantity.GetHashCode();
+            return hashCode;
         }
         #endregion
 
         public override string ToString()
         {
             string result = "";
-            result += $"orderDetailId:{Id}:  ";
             result += Goods + $", quantity:{Quantity}";
             return result;
         }

@@ -7,20 +7,15 @@ using System.Threading.Tasks;
 namespace OrderTest
 {
     public class Customer
-    {
-        #region customer's id
-        public uint Id { get; set; }
-        #endregion
-
+    {       
         #region customer's name
         public string Name { get; set; }
         #endregion
 
         #region constructor
         public Customer() { }
-        public Customer(uint id, string name)
+        public Customer(string name)
         {
-            Id = id;
             Name = name;
 
         }
@@ -29,7 +24,7 @@ namespace OrderTest
         #region override the ToString()
         public override string ToString()
         {
-            return $"customersId: {Id}, customersName: {Name}";
+            return $"{Name}";
         }
         #endregion
     }

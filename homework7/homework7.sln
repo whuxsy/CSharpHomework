@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderForm", "OrderForm\OrderForm.csproj", "{5F46E8AF-B99E-4828-A45A-C8B7C9ABF514}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order", "..\homework6\Order\Order.csproj", "{490DE639-E8A1-4AF0-AE11-FB27C957A871}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F46E8AF-B99E-4828-A45A-C8B7C9ABF514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F46E8AF-B99E-4828-A45A-C8B7C9ABF514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F46E8AF-B99E-4828-A45A-C8B7C9ABF514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F46E8AF-B99E-4828-A45A-C8B7C9ABF514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{490DE639-E8A1-4AF0-AE11-FB27C957A871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{490DE639-E8A1-4AF0-AE11-FB27C957A871}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{490DE639-E8A1-4AF0-AE11-FB27C957A871}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{490DE639-E8A1-4AF0-AE11-FB27C957A871}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF4FEE5C-CCA1-49B5-9C96-199C10871A02}
+	EndGlobalSection
+EndGlobal

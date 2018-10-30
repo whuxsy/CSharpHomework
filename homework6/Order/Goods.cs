@@ -12,17 +12,12 @@ namespace OrderTest
 
         #region constructor
         public Goods() { }
-        public Goods(uint id, string name, double value)
+        public Goods(string name, double value)
         {
-            Id = id;
             Name = name;
             Price = value;
         }
         #endregion 
-
-        #region goods id
-        public uint Id { get; set; }
-        #endregion
 
         #region goods name
         public string Name { get; set; }
@@ -49,7 +44,7 @@ namespace OrderTest
         #region override the ToString()
         public override string ToString()
         {
-            return $"id: {Id}, name: {Name}, value: {Price}";
+            return $"{Name}  {Price}";
         }
         #endregion
     }

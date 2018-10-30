@@ -45,17 +45,17 @@ namespace OrderTest
             }
             else
             {
-                throw new Exception($"orderdetails {od.Id} has exist!");
+                throw new Exception($"the orderdetails has exist!");
             }
         }
         #endregion
 
         #region remove the OrderDetail
-        public void RemoveDetail(uint detail_id)
+        public void RemoveDetail(string goodsname)
         {
             foreach (OrderDetail od in list)
             {
-                if (od.Id == detail_id)
+                if (goodsname==od.Goods.Name)
                 {
                     OrderMoney -= od.Money;
                     list.Remove(od);
@@ -68,7 +68,7 @@ namespace OrderTest
         public override string ToString()
         {
             string result = "\n";
-            result += $"orderId:{Id}, customer:({Customer})";
+            result += $"orderId:{Id}, customer:{Customer}";
             list.ForEach(od => result += "\n\t" + od);
             result += "\n================================================================================";
             return result;
