@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Xml.Serialization;
 using System.IO;
+using System.Xml.Xsl;
 using System.Xml;
-using System.Xml.Schema;
+using System.Xml.XPath;
 
 namespace OrderTest
 {
 
     public class OrderService
     {
-        private Dictionary<uint, Order> dic;
+        private Dictionary<string, Order> dic;
 
-        public Dictionary<uint, Order> Dic
+        public Dictionary<string, Order> Dic
         {
             get { return dic; }
         }
@@ -23,7 +24,7 @@ namespace OrderTest
         #region Constructor
         public OrderService()
         {
-            dic = new Dictionary<uint, Order>();
+            dic = new Dictionary<string, Order>();
         }
         #endregion
 
@@ -33,8 +34,8 @@ namespace OrderTest
         /// <param name="order"></param>
         public void AddOrder(Order order)
         {
-            if (dic.ContainsKey(order.Id))
-                throw new Exception($"the order {order.Id} has exist!");
+            if (!CheckId(order.Id))
+                throw new Exception($"订单 {order.Id} 不合法!");
             else
             {
                 dic[order.Id] = order;
@@ -46,7 +47,7 @@ namespace OrderTest
         /// remove the order in the dic
         /// </summary>
         /// <param name="order_id"></param>
-        public void RemoveOrder(uint order_id)
+        public void RemoveOrder(string order_id)
         {
             if (dic.ContainsKey(order_id))
                 dic.Remove(order_id);
@@ -62,7 +63,7 @@ namespace OrderTest
        /// </summary>
        /// <param name="id"></param>
        /// <returns></returns>
-        public Order GetOrderById(uint id)
+        public Order GetOrderById(string id)
         {
             if (dic.ContainsKey(id))
                 return dic[id];
@@ -117,7 +118,7 @@ namespace OrderTest
         /// </summary>
         /// <param name="orderId"></param>
         /// <param name="newCustomer"></param>
-        public void UpdateCustomer(uint orderId, Customer newCustomer)
+        public void UpdateCustomer(string orderId, Customer newCustomer)
         {
             if (dic.ContainsKey(orderId))
             {
@@ -161,6 +162,52 @@ namespace OrderTest
                 object obj2 = ser.Deserialize(fs);
                 return obj2;
             }          
+        }
+
+        /// <summary>
+        /// 正则表达式检验id是否合格
+        /// </summary>
+        /// <param name="testid"></param>
+        /// <returns></returns>
+        public bool CheckId(string testid)
+        {
+            //分成31,30,28天进行讨论
+            string[] ss = {@"((19|20)\d{2})(0?[13578]|1[02])(0?[1-9]|[12]\d|(30|31))(\d{3})",
+                        @"((19|20)\d{2})(0?[469]|11)(0?[1-9]|[12]\d|30)(\d{3})",
+                        @"((19|20)\d{2})(0?2)(0?[1-9]|1\d|2[0-8])(\d{3}))"};
+            foreach (string s in ss)
+            {
+                Regex regex = new Regex(s);
+                if (regex.IsMatch(testid))
+                {
+                    if (Dic.ContainsKey(testid))
+                        return false;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+        /// <summary>
+        /// XML文件转化为html文件
+        /// </summary>
+        public void XsltTransform()
+        {
+            Export(dic.Values.ToList(), @"..\..\a.xml");
+            XmlDocument xml = new XmlDocument();
+            xml.Load(@"..\..\a.xml");//加载xml文档
+
+            XPathNavigator nav = xml.CreateNavigator();
+            nav.MoveToRoot();//游标移动到根节点
+
+            XslCompiledTransform xt = new XslCompiledTransform();
+            xt.Load(@"..\..\a.xslt");
+
+            FileStream outFileStream = File.OpenWrite(@"..\..\a.html");
+            XmlTextWriter writer =
+                new XmlTextWriter(outFileStream, System.Text.Encoding.UTF8);
+            xt.Transform(nav, null, writer);
         }
     }
 }

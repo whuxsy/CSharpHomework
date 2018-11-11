@@ -14,8 +14,8 @@ namespace OrderTest
         static void Main(string[] args)
         {
             #region 初始化订单
-            Customer customer1 = new Customer("Customer1");
-            Customer customer2 = new Customer("Customer2");
+            Customer customer1 = new Customer("Customer1","11111111111");
+            Customer customer2 = new Customer("Customer2","22222222222");
 
             Goods milk = new Goods("Milk", 69.9);
             Goods eggs = new Goods("eggs", 4.99);
@@ -25,9 +25,9 @@ namespace OrderTest
             OrderDetail orderDetails2 = new OrderDetail(eggs, 1000);
             OrderDetail orderDetails3 = new OrderDetail(milk, 20);
 
-            Order order1 = new Order(1, customer1);
-            Order order2 = new Order(2, customer2);
-            Order order3 = new Order(3, customer2);
+            Order order1 = new Order("20181111001", customer1);
+            Order order2 = new Order("20181111002", customer2);
+            Order order3 = new Order("20181111003", customer2);
             order1.AddDetail(orderDetails1);
             order1.AddDetail(orderDetails2);
             order1.AddDetail(orderDetails3);
@@ -41,32 +41,9 @@ namespace OrderTest
             os.AddOrder(order3);
             #endregion
 
-            Order[] orders = new Order[10];
-            int i = 0;
-            foreach(Order od in os.Dic.Values)
-            {
-                orders[i++] = od;
-            }
-
             try
             {
-                //XML序列化
-                os.Export(orders, "a.xml");
-
-                //显示xml文本
-                string s = File.ReadAllText("a.xml");
-                Console.WriteLine(s);
-
-                //XML反序列化
-                Order[] orders2 = os.Import("a.xml") as Order[];
-                //打印订单
-                if (orders2 != null)
-                {
-                    foreach (Order od in orders2)
-                    {
-                        Console.WriteLine(od);
-                    }
-                }
+                os.XsltTransform();
             }catch(Exception e)
             {
                 Console.WriteLine(e.Message);

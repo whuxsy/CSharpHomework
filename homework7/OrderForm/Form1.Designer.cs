@@ -46,16 +46,17 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button7 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            OrderBingding = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.orderMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            OrderBingding = new System.Windows.Forms.BindingSource(this.components);
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.orderMoneyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.html = new System.Windows.Forms.Button();
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -63,11 +64,11 @@
             this.flowLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(OrderBingding)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.flowLayoutPanel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(OrderBingding)).BeginInit();
             this.SuspendLayout();
             // 
             // flowLayoutPanel4
@@ -215,6 +216,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.html);
             this.panel5.Controls.Add(this.button7);
             this.panel5.Controls.Add(this.label2);
             this.panel5.Controls.Add(this.label1);
@@ -244,10 +246,6 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "()";
             // 
-            // OrderBingding
-            // 
-            OrderBingding.DataSource = typeof(OrderTest.Order);
-            // 
             // label1
             // 
             this.label1.Location = new System.Drawing.Point(12, 17);
@@ -275,24 +273,6 @@
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(795, 292);
             this.dataGridView1.TabIndex = 1;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            // 
-            // customerDataGridViewTextBoxColumn
-            // 
-            this.customerDataGridViewTextBoxColumn.DataPropertyName = "Customer";
-            this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
-            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
-            // 
-            // orderMoneyDataGridViewTextBoxColumn
-            // 
-            this.orderMoneyDataGridViewTextBoxColumn.DataPropertyName = "OrderMoney";
-            this.orderMoneyDataGridViewTextBoxColumn.HeaderText = "OrderMoney";
-            this.orderMoneyDataGridViewTextBoxColumn.Name = "orderMoneyDataGridViewTextBoxColumn";
             // 
             // flowLayoutPanel5
             // 
@@ -338,6 +318,38 @@
             this.panel4.Size = new System.Drawing.Size(255, 39);
             this.panel4.TabIndex = 2;
             // 
+            // OrderBingding
+            // 
+            OrderBingding.DataSource = typeof(OrderTest.Order);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            // 
+            // customerDataGridViewTextBoxColumn
+            // 
+            this.customerDataGridViewTextBoxColumn.DataPropertyName = "Customer";
+            this.customerDataGridViewTextBoxColumn.HeaderText = "Customer";
+            this.customerDataGridViewTextBoxColumn.Name = "customerDataGridViewTextBoxColumn";
+            // 
+            // orderMoneyDataGridViewTextBoxColumn
+            // 
+            this.orderMoneyDataGridViewTextBoxColumn.DataPropertyName = "OrderMoney";
+            this.orderMoneyDataGridViewTextBoxColumn.HeaderText = "OrderMoney";
+            this.orderMoneyDataGridViewTextBoxColumn.Name = "orderMoneyDataGridViewTextBoxColumn";
+            // 
+            // html
+            // 
+            this.html.Location = new System.Drawing.Point(430, 10);
+            this.html.Name = "html";
+            this.html.Size = new System.Drawing.Size(106, 29);
+            this.html.TabIndex = 3;
+            this.html.Text = "生成html";
+            this.html.UseVisualStyleBackColor = true;
+            this.html.Click += new System.EventHandler(this.html_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
@@ -358,11 +370,11 @@
             this.panel2.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(OrderBingding)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.flowLayoutPanel5.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(OrderBingding)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,6 +407,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn customerDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn orderMoneyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button html;
         public static System.Windows.Forms.BindingSource OrderBingding;
     }
 }

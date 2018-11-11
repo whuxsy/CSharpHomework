@@ -14,7 +14,7 @@ namespace OrderTest
         public List<OrderDetail> list = new List<OrderDetail>();
 
         #region Order's id
-        public uint Id { get; set; }
+        public string Id { get; set; }
         #endregion
 
         #region Order's customer
@@ -27,7 +27,7 @@ namespace OrderTest
 
         #region OrderDetail's constructor
         public Order() { }
-        public Order(uint orderId, Customer customer)
+        public Order(string orderId, Customer customer)
         {
             Id = orderId;
             Customer = customer;

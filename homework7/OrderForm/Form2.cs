@@ -17,7 +17,7 @@ namespace OrderForm
             InitializeComponent();
         }
 
-        public Form2(uint id):this()
+        public Form2(string id):this()
         {
             this.Text = $"订单{id}";
             orderBindingSource.DataSource = Form1.os.Dic[id];

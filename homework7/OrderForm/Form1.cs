@@ -18,8 +18,8 @@ namespace OrderForm
         {
             InitializeComponent();
             #region 初始化订单
-            Customer customer1 = new Customer("Customer1");
-            Customer customer2 = new Customer("Customer2");
+            Customer customer1 = new Customer("Customer1","15445884526");
+            Customer customer2 = new Customer("Customer2","14865585566");
 
             Goods milk = new Goods("Milk", 10);
             Goods eggs = new Goods("eggs", 20);
@@ -29,9 +29,9 @@ namespace OrderForm
             OrderDetail orderDetails2 = new OrderDetail(eggs, 1000);
             OrderDetail orderDetails3 = new OrderDetail(milk, 20);
 
-            Order order1 = new Order(1, customer1);
-            Order order2 = new Order(2, customer2);
-            Order order3 = new Order(3, customer2);
+            Order order1 = new Order("20181111001", customer1);
+            Order order2 = new Order("20181111002", customer2);
+            Order order3 = new Order("20181111003", customer2);
             order1.AddDetail(orderDetails1);
             order1.AddDetail(orderDetails2);
             order1.AddDetail(orderDetails3);
@@ -56,7 +56,7 @@ namespace OrderForm
         private void button1_Click(object sender, EventArgs e)
         {
             OrderBingding.DataSource = 
-                os.Dic.Values.Where(o => o.Id == Int32.Parse(textBox1.Text));
+                os.Dic.Values.Where(o => o.Id == textBox1.Text);
             textBox1.Text = "";
         }
 
@@ -93,7 +93,7 @@ namespace OrderForm
             string s = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             if (s != "")
             {
-                os.RemoveOrder(uint.Parse(s));
+                os.RemoveOrder(s);
                 OrderBingding.DataSource = os.Dic.Values.ToList();
             }
         }
@@ -116,15 +116,23 @@ namespace OrderForm
         private void button7_Click(object sender, EventArgs e)
         {
             string s = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            uint i = uint.Parse(s);
-            new Form2(i).Show();
+            new Form2(s).Show();
         }
-
+        /// <summary>
+        /// 修改订单
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            string name = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            string name = os.Dic[id].Customer.Name;
             new Form4(id,name).ShowDialog();
+        }
+
+        private void html_Click(object sender, EventArgs e)
+        {
+            os.XsltTransform();
         }
     }
 }

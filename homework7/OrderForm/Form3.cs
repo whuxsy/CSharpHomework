@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using OrderTest;
@@ -44,11 +44,21 @@ namespace OrderForm
 
         private void establish_Click(object sender, EventArgs e)
         {
-            order.Id = uint.Parse(textBox1.Text);
-            order.Customer = new Customer(textBox2.Text);
+            order.Id = textBox1.Text;
+            if (!checkPhone(textBox4.Text))
+                throw new Exception("电话格式不正确");
+            order.Customer = new Customer(textBox2.Text,textBox4.Text);
             Form1.os.AddOrder(order);
             Form1.OrderBingding.DataSource = Form1.os.Dic.Values.ToList();
+            this.Close();
         }
 
+        public bool checkPhone(string phone)
+        {
+            Regex regex = new Regex(@"\d{11}");
+            if (regex.IsMatch(phone))
+                return true;
+            return false;
+        }
     }
 }

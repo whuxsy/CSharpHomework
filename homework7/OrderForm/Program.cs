@@ -21,7 +21,14 @@ namespace OrderForm
                 Application.Run(new Form1());
             }catch(Exception e)
             {
-                MessageBox.Show(e.Message);
+                if (MessageBox.Show(null, e.Message, "出错了", MessageBoxButtons.RetryCancel) == DialogResult.Cancel)
+                {
+                    return;
+                }
+                else
+                {
+                    Application.Run(new Form1());
+                }
             }
         }
     }
