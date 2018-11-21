@@ -27,9 +27,10 @@
         <Money>1398</Money>
       </OrderDetail>
     </list>
-    <Id>1</Id>
+    <Id>20181111001</Id>
     <Customer>
       <Name>Customer1</Name>
+      <Phone>11111111111</Phone>
     </Customer>
     <OrderMoney>34338</OrderMoney>
   </Order>
@@ -52,9 +53,10 @@
         <Money>1398</Money>
       </OrderDetail>
     </list>
-    <Id>2</Id>
+    <Id>20181111002</Id>
     <Customer>
       <Name>Customer2</Name>
+      <Phone>22222222222</Phone>
     </Customer>
     <OrderMoney>6388</OrderMoney>
   </Order>
@@ -69,9 +71,10 @@
         <Money>1398</Money>
       </OrderDetail>
     </list>
-    <Id>3</Id>
+    <Id>20181111003</Id>
     <Customer>
       <Name>Customer2</Name>
+      <Phone>22222222222</Phone>
     </Customer>
     <OrderMoney>1398</OrderMoney>
   </Order>
