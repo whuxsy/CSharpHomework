@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2019
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderForm", "OrderForm\OrderForm.csproj", "{8DE90AE3-0498-4DB4-B7C6-B4CC88045636}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8DE90AE3-0498-4DB4-B7C6-B4CC88045636}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE90AE3-0498-4DB4-B7C6-B4CC88045636}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE90AE3-0498-4DB4-B7C6-B4CC88045636}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE90AE3-0498-4DB4-B7C6-B4CC88045636}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {217CB833-BAE4-4D31-9BAA-0EA272B2491A}
+	EndGlobalSection
+EndGlobal
