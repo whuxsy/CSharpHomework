@@ -15,8 +15,6 @@ namespace OrderForm
 
     public class OrderService
     {
-        public Dictionary<string, Order> Dic = new Dictionary<string, Order>();
-
         /// <summary>
         /// add order to the dic
         /// </summary>
@@ -83,7 +81,7 @@ namespace OrderForm
             using(var db=new OrderDB())
             {
                 return db.Order.Include("details")
-                    .Where(od => od.details.Where(d => d.Goods.Name.Equals(name)).Count()>0).ToList<Order>();
+                    .Where(od => od.details.Where(d => d.Goods.Name==name).Count()>0).ToList<Order>();
             }
         }
 
@@ -98,7 +96,7 @@ namespace OrderForm
             using(var db=new OrderDB())
             {
                 return db.Order.Include("details")
-                    .Where(o => o.Customer.Name.Equals(name)).ToList<Order>();
+                    .Where(o => o.Customer.Name==name).ToList<Order>();
             }
         }
 
@@ -195,7 +193,7 @@ namespace OrderForm
         /// </summary>
         public void XsltTransform()
         {
-            Export(Dic.Values.ToList(), @"..\..\a.xml");
+            Export(Form1.os.GetAllOrders(), @"..\..\a.xml");
             XmlDocument xml = new XmlDocument();
             xml.Load(@"..\..\a.xml");//加载xml文档
 

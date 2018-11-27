@@ -49,8 +49,8 @@ namespace OrderForm
             if (!checkPhone(textBox4.Text))
                 throw new Exception("电话格式不正确");
             order.Customer = new Customer(textBox2.Text, textBox4.Text);
-            Form1.os.Dic[order.Id] = order;
-            Form1.OrderBingding.DataSource = Form1.os.Dic.Values.ToList();
+            Form1.OrderBingding.Add(order);
+            Form1.os.AddOrder(order);
             this.Close();
         }
 

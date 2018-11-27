@@ -43,7 +43,7 @@ namespace OrderForm
         public override string ToString()
         {
             string result = "";
-            result += Goods + $", quantity:{Quantity}";
+            result += (Id + Goods + $", quantity:{Quantity}");
             return result;
         }
     }

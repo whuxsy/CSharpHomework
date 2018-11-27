@@ -19,12 +19,8 @@ namespace OrderForm
         {
             InitializeComponent();
             os = new OrderService();
-            foreach(Order od in os.GetAllOrders())
-            {
-                os.Dic[od.Id] = od;
-            }
 
-            OrderBingding.DataSource = os.Dic.Values.ToList();
+            OrderBingding.DataSource = os.GetAllOrders();
         }
 
         /// <summary>
@@ -35,7 +31,7 @@ namespace OrderForm
         private void button1_Click(object sender, EventArgs e)
         {
             OrderBingding.DataSource =
-               os.Dic.Values.Where(o => o.Id == textBox1.Text);
+               os.GetOrderById(textBox1.Text);
             textBox1.Text = "";
         }
 
@@ -47,7 +43,7 @@ namespace OrderForm
         private void button2_Click(object sender, EventArgs e)
         {
             OrderBingding.DataSource =
-                os.Dic.Values.Where(o => o.Customer.Name == textBox2.Text);
+                os.GetOrderByCustomer(textBox2.Text);
             textBox2.Text = "";
         }
 
@@ -70,11 +66,8 @@ namespace OrderForm
         private void button5_Click(object sender, EventArgs e)
         {
             string s = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            if (s != "")
-            {
-                os.RemoveOrder(s);
-                OrderBingding.DataSource = os.Dic.Values.ToList();
-            }
+            os.RemoveOrder(s);
+            OrderBingding.Remove(os.GetOrderById(s));
         }
 
         /// <summary>
@@ -105,7 +98,7 @@ namespace OrderForm
         private void button6_Click(object sender, EventArgs e)
         {
             string id = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            string name = os.Dic[id].Customer.Name;
+            string name = os.GetOrderById(id).Customer.Name;
             new Form4(id, name).ShowDialog();
         }
 

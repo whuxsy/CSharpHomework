@@ -20,10 +20,8 @@ namespace OrderForm
         public Form2(string id) : this()
         {
             this.Text = $"订单{id}";
-            orderBindingSource.DataSource = Form1.os.Dic[id];
-            orderdetailbindingSource.DataSource = Form1.os.Dic[id].details;
+            orderBindingSource.DataSource = Form1.os.GetOrderById(id);
+            orderdetailbindingSource.DataSource = Form1.os.GetOrderById(id).details;
         }
-
-
     }
 }

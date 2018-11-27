@@ -23,14 +23,14 @@ namespace OrderForm
             InitializeComponent();
             Id = label2.Text = id;
             customername.Text = customerName;
-            detailsource.DataSource = Form1.os.Dic[id].details;
+            detailsource.DataSource = Form1.os.GetOrderById(id).details;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.os.Update(new Order(Id, new Customer
-                (customername.Text, Form1.os.Dic[Id].Customer.Phone)));
-            Form1.OrderBingding.DataSource = Form1.os.Dic.Values.ToList();
+                (customername.Text, Form1.os.GetOrderById(Id).Customer.Phone)));
+            Form1.OrderBingding.DataSource = Form1.os.GetAllOrders();
             this.Close();
         }
     }
