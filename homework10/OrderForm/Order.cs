@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderForm
 {
@@ -23,42 +24,18 @@ namespace OrderForm
         public Order() {
             details = new List<OrderDetail>();
         }
-        public Order(string orderId, Customer customer):base()
+        public Order(string orderId, Customer customer,List<OrderDetail>list)
         {
             Id = orderId;
             Customer = customer;
+            details = list;
             OrderMoney = 0;
-        }
-        #endregion
-
-        #region add the OrderDtail
-        public void AddDetail(OrderDetail od)
-        {
-            if (!details.Contains(od))
+            foreach(OrderDetail od in list)
             {
-                details.Add(od);
                 OrderMoney += od.Money;
             }
-            else
-            {
-                throw new Exception($"the orderdetails has exist!");
-            }
         }
-        #endregion
-
-        #region remove the OrderDetail
-        public void RemoveDetail(string goodsname)
-        {
-            foreach (OrderDetail od in details)
-            {
-                if (goodsname == od.Goods.Name)
-                {
-                    OrderMoney -= od.Money;
-                    details.Remove(od);
-                }
-            }
-        }
-        #endregion
+        #endregion      
 
         #region override the ToString()
         public override string ToString()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace OrderForm
 {
@@ -11,11 +12,13 @@ namespace OrderForm
     {
         [Key]
         public string Id { get; set; }
-        public Goods Goods { get; set; }
         public uint Quantity { get; set; }
         public double Money { get; set; }
+        public Goods Goods { get; set; }
 
-        public OrderDetail() { }
+        public OrderDetail() {
+            Id = Guid.NewGuid().ToString();
+        }
         public OrderDetail(string id,Goods goods, uint quantity)
         {
             Id = id;

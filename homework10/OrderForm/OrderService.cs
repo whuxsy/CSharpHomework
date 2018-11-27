@@ -28,6 +28,7 @@ namespace OrderForm
                 using(var db = new OrderDB())
                 {
                     db.Order.Add(order);
+                    db.SaveChanges();
                 }
             }
         }

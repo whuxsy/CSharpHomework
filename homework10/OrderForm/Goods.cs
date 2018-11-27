@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,22 +9,8 @@ namespace OrderForm
 {
     public class Goods
     {
-        private double price;
 
-        #region constructor
-        public Goods() { }
-        public Goods(string name, double value)
-        {
-            Name = name;
-            Price = value;
-        }
-        #endregion 
-
-        #region goods name
         public string Name { get; set; }
-        #endregion
-
-        #region goods price
         public double Price
         {
             get { return price; }
@@ -39,7 +26,18 @@ namespace OrderForm
                 }
             }
         }
-        #endregion
+        public double price;
+
+        #region constructor
+        public Goods() { }
+        public Goods(string name, double value)
+        {
+            Name = name;
+            Price = value;
+        }
+        #endregion 
+
+        
 
         #region override the ToString()
         public override string ToString()

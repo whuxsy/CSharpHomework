@@ -13,6 +13,7 @@ namespace OrderForm
     public partial class Form3 : Form
     {
         public Dictionary<string, double> good = new Dictionary<string, double>();
+        private List<OrderDetail> odlist = new List<OrderDetail>();
         private Order order;
         int i;
 
@@ -25,7 +26,6 @@ namespace OrderForm
             good["banana"] = 40;
             good["book"] = 50;
             good["fish"] = 60;
-            order = new Order();
             bindingSource1.DataSource = null;
             i = 1;
         }
@@ -37,20 +37,20 @@ namespace OrderForm
             {
                 Goods g = new Goods(s, good[s]);
                 OrderDetail od = new OrderDetail(i++.ToString(),g, uint.Parse(textBox3.Text));
-                order.AddDetail(od);
+                odlist.Add(od);
             }
             bindingSource1.DataSource = null;
-            bindingSource1.DataSource = order.details;
+            bindingSource1.DataSource = odlist;
         }
 
         private void establish_Click(object sender, EventArgs e)
         {
-            order.Id = textBox1.Text;
             if (!checkPhone(textBox4.Text))
                 throw new Exception("电话格式不正确");
-            order.Customer = new Customer(textBox2.Text, textBox4.Text);
+            order = new Order(textBox1.Text, new Customer(textBox2.Text, textBox4.Text), odlist);
             Form1.OrderBingding.Add(order);
             Form1.os.AddOrder(order);
+            Form1.OrderBingding.ResetBindings(false);
             this.Close();
         }
 

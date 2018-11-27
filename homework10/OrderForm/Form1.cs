@@ -33,6 +33,7 @@ namespace OrderForm
             OrderBingding.DataSource =
                os.GetOrderById(textBox1.Text);
             textBox1.Text = "";
+            OrderBingding.ResetBindings(false);
         }
 
         /// <summary>
@@ -45,6 +46,7 @@ namespace OrderForm
             OrderBingding.DataSource =
                 os.GetOrderByCustomer(textBox2.Text);
             textBox2.Text = "";
+            OrderBingding.ResetBindings(false);
         }
 
         /// <summary>
@@ -56,6 +58,7 @@ namespace OrderForm
         {
             OrderBingding.DataSource = os.GetOrderByName(textBox3.Text);
             textBox3.Text = "";
+            OrderBingding.ResetBindings(false);
         }
 
         /// <summary>
@@ -68,6 +71,7 @@ namespace OrderForm
             string s = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             os.RemoveOrder(s);
             OrderBingding.Remove(os.GetOrderById(s));
+            OrderBingding.DataSource = os.GetAllOrders();
         }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace OrderForm
         private void button1_Click(object sender, EventArgs e)
         {
             Form1.os.Update(new Order(Id, new Customer
-                (customername.Text, Form1.os.GetOrderById(Id).Customer.Phone)));
+                (customername.Text, Form1.os.GetOrderById(Id).Customer.Phone),Form1.os.GetOrderById(Id).details));
             Form1.OrderBingding.DataSource = Form1.os.GetAllOrders();
             this.Close();
         }
