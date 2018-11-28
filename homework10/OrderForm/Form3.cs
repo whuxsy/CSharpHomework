@@ -15,7 +15,6 @@ namespace OrderForm
         public Dictionary<string, double> good = new Dictionary<string, double>();
         private List<OrderDetail> odlist = new List<OrderDetail>();
         private Order order;
-        int i;
 
         public Form3()
         {
@@ -27,7 +26,6 @@ namespace OrderForm
             good["book"] = 50;
             good["fish"] = 60;
             bindingSource1.DataSource = null;
-            i = 1;
         }
 
         private void choose_Click(object sender, EventArgs e)
@@ -36,7 +34,10 @@ namespace OrderForm
             if (s != "")
             {
                 Goods g = new Goods(s, good[s]);
-                OrderDetail od = new OrderDetail(i++.ToString(),g, uint.Parse(textBox3.Text));
+                OrderDetail od = new OrderDetail();
+                od.Goods = g;
+                od.Quantity = uint.Parse(textBox3.Text);
+                od.Money = od.Quantity * od.Goods.Price;
                 odlist.Add(od);
             }
             bindingSource1.DataSource = null;
@@ -48,8 +49,8 @@ namespace OrderForm
             if (!checkPhone(textBox4.Text))
                 throw new Exception("电话格式不正确");
             order = new Order(textBox1.Text, new Customer(textBox2.Text, textBox4.Text), odlist);
-            Form1.OrderBingding.Add(order);
             Form1.os.AddOrder(order);
+            Form1.OrderBingding.Add(order);           
             Form1.OrderBingding.ResetBindings(false);
             this.Close();
         }
